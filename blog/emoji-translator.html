@@ -596,6 +596,8 @@ pub fn initialize() -> i32 {
             <p>Whether you're interested in natural language processing, Rust programming, or WebAssembly development, this project demonstrates how these technologies can work together to create something both fun and functional. The next time you want to add some emoji flair to your text, you'll know exactly how the magic works under the hood!</p>
             <p>Bye! 👋</p>
         </div>
+    </div>
+    <div id="footer-placeholder"></div>
 
     <script type="module">
 
@@ -686,7 +688,23 @@ pub fn initialize() -> i32 {
             }
         }
 
-        window.addEventListener('load', initializeApp);
+        async function loadFooter() {
+            try {
+                const response = await fetch('../footer.html');
+                if (!response.ok) {
+                    throw new Error(`Failed to load footer.html: ${response.status} ${response.statusText}`);
+                }
+                const footerHtml = await response.text();
+                document.getElementById('footer-placeholder').innerHTML = footerHtml;
+            } catch (error) {
+                console.error("Error loading footer:", error);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            initializeApp();
+            loadFooter();
+        });
     </script>
 </body>
 </html>
