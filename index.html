@@ -4,19 +4,178 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #222;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            color: #888;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .post-card {
+            background: #111111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #ffffff, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-2px);
+            border-color: #555;
+            background: #1a1a1a;
+        }
+
+        .post-card:hover::before {
+            opacity: 1;
+        }
+
+        .post-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            line-height: 1.4;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .tag {
+            background: #222;
+            color: #ccc;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid #333;
+            transition: all 0.2s ease;
+        }
+
+        .post-card:hover .tag {
+            background: #333;
+            border-color: #444;
+            color: #fff;
+        }
+
+        .post-excerpt {
+            color: #aaa;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+            
+            header {
+                margin-bottom: 3rem;
+            }
+            
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .post-card {
+                padding: 1.5rem;
+            }
+            
+            .post-title {
+                font-size: 1.3rem;
+            }
+            
+            .blog-posts {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1rem;
+            }
+            
+            .post-meta {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🚀 Tech Blog</h1>
+            <h1>Tech Blog</h1>
             <p>Exploring code, creativity, and innovation</p>
         </header>
-
+        
         <div id="blog-posts" class="blog-posts active">
             <div class="post-card" onclick="window.location.href='emoji-translator.html'">
-                <div class="post-title">😀 Building an Emoji Translator with Rust and WebAssembly</div>
+                <div class="post-title">Building an Emoji Translator with Rust and WebAssembly</div>
                 <div class="post-meta">
-                    • 
                     <span class="tag">Rust</span>
                     <span class="tag">WebAssembly</span>
                     <span class="tag">NLP</span>
@@ -25,12 +184,10 @@
                     Learn how to build a web application that translates regular text into relevant emojis using WebAssembly, word embeddings, and semantic similarity calculations.
                 </div>
             </div>
-            <br><br><br>
 
             <div class="post-card" onclick="window.location.href='wasm-intro.html'">
-                <div class="post-title">🦀 Getting Started with Rust and WebAssembly</div>
+                <div class="post-title">Getting Started with Rust and WebAssembly</div>
                 <div class="post-meta">
-                    • 
                     <span class="tag">Rust</span>
                     <span class="tag">WebAssembly</span>
                     <span class="tag">Tutorial</span>
@@ -39,12 +196,10 @@
                     A beginner's guide to compiling Rust code to WebAssembly and integrating it with JavaScript for high-performance web applications.
                 </div>
             </div>
-            <br><br><br>
 
             <div class="post-card" onclick="window.location.href='ml-browser.html'">
-                <div class="post-title">🧠 Machine Learning in the Browser</div>
+                <div class="post-title">Machine Learning in the Browser</div>
                 <div class="post-meta">
-                    • 
                     <span class="tag">Machine Learning</span>
                     <span class="tag">JavaScript</span>
                     <span class="tag">WebAssembly</span>
@@ -53,7 +208,6 @@
                     Exploring different approaches to running machine learning models directly in web browsers, from TensorFlow.js to custom WebAssembly implementations.
                 </div>
             </div>
-            <br><br><br>
         </div>
     </div>
 </body>
