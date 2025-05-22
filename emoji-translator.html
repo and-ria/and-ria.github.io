@@ -3,512 +3,267 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emoji Translator - Tech Blog</title>
+    <title>Emoji Translator</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: #333;
-            max-width: 900px;
-            margin: 0 auto;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
-            background-color: #f8f9fa;
         }
 
         .container {
             background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .back-btn {
-            background-color: #6c757d;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-bottom: 20px;
-            transition: background-color 0.2s;
-        }
-
-        .back-btn:hover {
-            background-color: #5a6268;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
         }
 
         h1 {
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            color: #34495e;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        .emoji {
-            font-size: 1.2em;
-            margin-right: 8px;
-        }
-
-        /* Emoji Translator Styles */
-        .emoji-translator {
-            background-color: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 30px 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .translator-title {
             text-align: center;
-            color: #495057;
-            margin-bottom: 20px;
-            font-size: 1.3em;
-            font-weight: 600;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: 300;
+            color: #2c3e50;
+        }
+
+        .emoji-translator {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         #loading {
             text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
+            color: #666;
         }
 
         #translator {
             display: none;
         }
 
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            color: #495057;
-        }
-
         textarea {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #dee2e6;
-            border-radius: 8px;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
             font-size: 16px;
             font-family: inherit;
             resize: vertical;
+            min-height: 120px;
             transition: border-color 0.2s;
         }
 
         textarea:focus {
             outline: none;
             border-color: #3498db;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        textarea::placeholder {
+            color: #999;
         }
 
         .translate-btn {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: #3498db;
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 16px 32px;
+            border-radius: 12px;
             font-size: 16px;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
+            transition: background-color 0.2s;
+            align-self: center;
         }
 
         .translate-btn:hover {
-            background: linear-gradient(135deg, #2980b9, #1f639a);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
-        }
-
-        .translate-btn:active {
-            transform: translateY(0);
+            background: #2980b9;
         }
 
         #output {
-            background-color: white;
-            border: 2px solid #dee2e6;
-            border-radius: 8px;
-            padding: 15px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
             min-height: 80px;
-            font-size: 24px;
+            font-size: 28px;
             line-height: 1.4;
-            word-wrap: break-word;
-            margin-top: 15px;
-            transition: all 0.2s;
+            text-align: center;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .progress {
-            background-color: #e9ecef;
-            border-radius: 10px;
-            height: 8px;
-            margin: 15px 0;
-            overflow: hidden;
+        .loading-spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #e0e0e0;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
         }
 
-        .progress-bar {
-            background: linear-gradient(90deg, #3498db, #2ecc71);
-            height: 100%;
-            width: 0%;
-            border-radius: 10px;
-            transition: width 0.3s ease;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .status-text {
-            color: #6c757d;
+            color: #999;
             font-size: 14px;
             text-align: center;
-            margin-top: 10px;
         }
 
-        /* Blog content styles */
-        .blog-content {
-            margin-top: 40px;
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #999;
+            font-size: 14px;
         }
 
-        pre, code {
-            background-color: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 4px;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-        }
-
-        pre {
-            padding: 15px;
-            overflow-x: auto;
-            margin: 15px 0;
-        }
-
-        code {
-            padding: 2px 4px;
-            font-size: 0.9em;
-        }
-
-        pre code {
-            padding: 0;
-            background: none;
-            border: none;
-        }
-
-        ul, ol {
-            padding-left: 25px;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        a {
+        .footer a {
             color: #3498db;
             text-decoration: none;
         }
 
-        a:hover {
+        .footer a:hover {
             text-decoration: underline;
         }
 
-        .demo-notice {
-            background: linear-gradient(135deg, #e8f5e8, #d4edda);
-            border: 1px solid #c3e6cb;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            text-align: center;
-            color: #155724;
-            font-weight: 500;
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            #output {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <button class="back-btn" onclick="window.location.href='index.html'">← Back to Posts</button>
-        
-        <h1><span class="emoji">😀</span> Emoji Translator</h1>
+        <h1>😀 Emoji Translator</h1>
 
-        <!-- Interactive Demo Section -->
         <div class="emoji-translator">
             <div id="loading">
-                <div class="translator-title">🔄 Loading Emoji Translator...</div>
-                <div class="progress">
-                    <div id="progress-bar" class="progress-bar"></div>
-                </div>
-                <div class="status-text">Loading language models and emoji data...</div>
+                <div class="loading-spinner"></div>
+                <div class="status-text">Loading...</div>
             </div>
 
-            <div id="translator">                
-                <div class="input-group">
-                    <label for="input-text">Enter your text:</label>
-                    <textarea id="input-text" rows="4" placeholder="Type something like 'I love programming and coffee'..."></textarea>
-                </div>
+            <div id="translator">
+                <textarea 
+                    id="input-text" 
+                    placeholder="Type something like 'I love programming and coffee'..."
+                    autofocus
+                ></textarea>
                 
-                <button id="translate-btn" class="translate-btn">🔮 Translate to Emojis</button>
+                <button id="translate-btn" class="translate-btn">
+                    Translate to Emojis
+                </button>
                 
-                <div class="input-group">
-<!--                     <label for="output">Your emoji translation:</label> -->
-                    <div id="output">Your translated emojis will appear here...</div>
-                </div>
-                
-                <div class="status-text">
-                    💡 Tip: Press Ctrl+Enter to translate quickly!
+                <div id="output">
+                    Your emojis will appear here...
                 </div>
             </div>
         </div>
 
-        <!-- Blog Content -->
-        <div class="blog-content">
-            <p>A web application that uses WebAssembly (Wasm) and word embeddings to translate regular text into relevant emojis. The translator finds semantic connections between your words and emoji keywords using GloVe (Global Vectors for Word Representation) embeddings.</p>
-
-            <p>Try it live at: <a href="https://and-ria.github.io/Emoji-Translator" target="_blank">https://and-ria.github.io/Emoji-Translator</a></p>
-
-            <h2><span class="emoji">🧠</span> How It Works</h2>
-
-            <p>This application uses natural language processing techniques to find semantic similarities between input text and emoji keywords:</p>
-
-            <ol>
-                <li><strong>Word Embeddings</strong>: Uses GloVe word embeddings to convert words into vectors in a high-dimensional space where similar words are positioned closer together</li>
-                <li><strong>Cosine Similarity</strong>: Calculates the semantic similarity between input words and emoji keywords</li>
-                <li><strong>WebAssembly</strong>: Leverages Rust compiled to WebAssembly for efficient text processing and vector calculations</li>
-                <li><strong>Web Frontend</strong>: Provides a simple, clean interface for entering text and displaying emoji translations</li>
-            </ol>
-
-            <h2><span class="emoji">🛠️</span> Technical Stack</h2>
-
-            <ul>
-                <li><strong>Rust</strong>: Core translation logic and vector similarity calculations</li>
-                <li><strong>WebAssembly</strong>: Compiles Rust code for browser execution</li>
-                <li><strong>JavaScript</strong>: Glues everything together and handles the UI interaction</li>
-                <li><strong>HTML/CSS</strong>: Simple and responsive user interface</li>
-            </ul>
-
-            <h2><span class="emoji">📦</span> Project Structure</h2>
-
-            <pre><code>Emoji-Translator/
-├── src/
-│   └── lib.rs           # Rust code for the translator
-├── static/
-│   ├── emoji.json       # Emoji to keywords mapping (from emojilib)
-│   └── glove.txt        # GloVe word embeddings
-├── Cargo.toml           # Rust package configuration
-├── build.sh            # Build script
-├── emoji_site.js       # Generated JavaScript bindings
-├── emoji_site_bg.wasm  # Compiled WebAssembly module
-└── index.html          # Web UI</code></pre>
-
-            <h2><span class="emoji">🚀</span> Getting Started</h2>
-
-            <h3>Prerequisites</h3>
-
-            <ul>
-                <li><a href="https://www.rust-lang.org/tools/install" target="_blank">Rust</a> and Cargo</li>
-                <li><a href="https://rustwasm.github.io/wasm-pack/installer/" target="_blank">wasm-pack</a></li>
-            </ul>
-
-            <h3>Setup</h3>
-
-            <ol>
-                <li>Clone this repository:
-                    <pre><code>git clone https://github.com/and-ria/Emoji-Translator.git
-cd Emoji-Translator</code></pre>
-                </li>
-                <li>Download the required data files:
-                    <p>You'll need:</p>
-                    <ul>
-                        <li><code>glove.txt</code>: A subset of GloVe word embeddings (we recommend the 50-dimensional version)</li>
-                        <li><code>emoji.json</code>: Get this from <a href="https://github.com/muan/emojilib" target="_blank">emojilib</a> (<code>emoji.json</code> file)</li>
-                    </ul>
-                    <p>Place these files in the <code>static/</code> directory.</p>
-                </li>
-                <li>Build the project:
-                    <pre><code>./build.sh</code></pre>
-                </li>
-                <li>Serve the directory with a local web server:
-                    <pre><code>python -m http.server
-# or any other web server of your choice</code></pre>
-                </li>
-                <li>Open your browser and navigate to <code>http://localhost:8000</code></li>
-            </ol>
-
-            <h2><span class="emoji">📋</span> Usage</h2>
-
-            <ol>
-                <li>Wait for the application to initialize (it will load the word embeddings and emoji data)</li>
-                <li>Type or paste your text in the input box</li>
-                <li>Click "Translate" (or press Ctrl+Enter)</li>
-                <li>View your emoji translation!</li>
-            </ol>
-
-            <h2><span class="emoji">📝</span> Data Files</h2>
-
-            <h3>emoji.json</h3>
-
-            <p>This project uses <a href="https://github.com/muan/emojilib" target="_blank">emojilib</a> for emoji data. It's a JSON file mapping emoji characters to arrays of related keywords:</p>
-
-            <pre><code>{
-  "😗": [
-    "kissing_face",
-    "love",
-    "like",
-    "face",
-    "kiss",
-    "duck",
-    "kissy",
-    "whistling"
-  ],
-  "☺️": [
-    "smiling_face",
-    "face",
-    "blush",
-    "happiness",
-    "happy",
-    "smile",
-    "smiley"
-  ]
-}</code></pre>
-
-            <h3>glove.txt</h3>
-
-            <p>A text file containing word embeddings, where each line has a word followed by its vector representation:</p>
-
-            <pre><code>the 0.418 0.24968 -0.41242 0.1217 0.34527 ...
-, 0.013441 0.23682 -0.16899 0.40951 0.63812 ...
-. 0.15164 0.30177 -0.16763 0.17684 0.31719 ...</code></pre>
-
-            <h2><span class="emoji">🔧</span> Customization</h2>
-
-            <ul>
-                <li><strong>Adjust similarity threshold</strong>: In <code>lib.rs</code>, modify the similarity threshold (currently 0.5) to make the translator more or less strict</li>
-                <li><strong>Add more emojis</strong>: Add entries to the <code>emoji.json</code> file</li>
-                <li><strong>Use different embeddings</strong>: Replace <code>glove.txt</code> with different word embeddings and update the loading logic if needed</li>
-            </ul>
-
-            <h2><span class="emoji">🤝</span> Contributing</h2>
-
-            <p>Contributions are welcome! Feel free to:</p>
-
-            <ol>
-                <li>Fork the repository</li>
-                <li>Create a feature branch (<code>git checkout -b feature/amazing-feature</code>)</li>
-                <li>Commit your changes (<code>git commit -m 'Add amazing feature'</code>)</li>
-                <li>Push to the branch (<code>git push origin feature/amazing-feature</code>)</li>
-                <li>Open a Pull Request</li>
-            </ol>
-
-            <h2><span class="emoji">📄</span> License</h2>
-
-            <p>This project is licensed under the MIT License - see the LICENSE file for details.</p>
-
-            <h2><span class="emoji">🙏</span> Acknowledgments</h2>
-
-            <ul>
-                <li><a href="https://nlp.stanford.edu/projects/glove/" target="_blank">GloVe</a> for the word embeddings</li>
-                <li><a href="https://github.com/muan/emojilib" target="_blank">emojilib</a> by <a href="https://github.com/muan" target="_blank">@muan</a> for the emoji keyword data</li>
-                <li><a href="https://github.com/rustwasm" target="_blank">Rust WebAssembly Working Group</a> for <code>wasm-bindgen</code> and related tools</li>
-                <li>All emoji creators and standardization committees!</li>
-            </ul>
+        <div class="footer">
+            <p>Built with WebAssembly and GloVe word embeddings</p>
+            <p><a href="https://github.com/and-ria/Emoji-Translator" target="_blank">View on GitHub</a></p>
         </div>
     </div>
 
     <script type="module">
-        // Note: This assumes the WebAssembly files are available in the same directory
-        // You'll need to ensure emoji_site.js and emoji_site_bg.wasm are present
-        
-        import init, { EmojiTranslator, initialize } from './emoji_site.js';
+        // WebAssembly integration
+        import init, { EmojiTranslator } from './emoji_site.js';
 
         let translator = null;
-        let loadingElement = document.getElementById('loading');
-        let translatorElement = document.getElementById('translator');
-        let progressBar = document.getElementById('progress-bar');
+        const loading = document.getElementById('loading');
+        const translatorDiv = document.getElementById('translator');
 
         async function loadData(url) {
             const response = await fetch(url);
             if (!response.ok) {
-                throw new Error(`Failed to load ${url}: ${response.status} ${response.statusText}`);
+                throw new Error(`Failed to load ${url}`);
             }
             return await response.text();
         }
 
         async function initializeApp() {
             try {
-                setProgress(10);
-                console.log("Starting initialization...");
-
                 await init();
-                setProgress(30);
-                console.log("WASM module loaded");
-
-                console.log("Loading GloVe embeddings...");
-                const gloveData = await loadData('static/glove.txt');
-                console.log("GloVe embeddings loaded, length:", gloveData.length);
-                setProgress(70);
-
-                console.log("Loading emoji data...");
-                const emojiData = await loadData('static/emoji.json');
-                console.log("Emoji data loaded, length:", emojiData.length);
-                setProgress(90);
+                
+                const [gloveData, emojiData] = await Promise.all([
+                    loadData('static/glove.txt'),
+                    loadData('static/emoji.json')
+                ]);
 
                 translator = new EmojiTranslator();
                 translator.initialize(gloveData, emojiData);
-                setProgress(100);
-                console.log("Translator initialized");
 
-                setTimeout(() => {
-                    loadingElement.style.display = 'none';
-                    translatorElement.style.display = 'block';
-                }, 500);
-
+                loading.style.display = 'none';
+                translatorDiv.style.display = 'flex';
+                
                 setupEventListeners();
-
             } catch (error) {
-                console.error("Error initializing application:", error);
-                loadingElement.innerHTML = `
-                    <div class="translator-title">❌ Error Loading</div>
-                    <div class="status-text">There was a problem loading the necessary data: ${error.message}</div>
-                    <div class="status-text">Please refresh the page to try again.</div>
+                console.error("Error:", error);
+                loading.innerHTML = `
+                    <div class="status-text">❌ Failed to load. Please refresh the page.</div>
                 `;
             }
         }
 
         function setupEventListeners() {
-            document.getElementById('translate-btn').addEventListener('click', translateText);
-            document.getElementById('input-text').addEventListener('keydown', function(e) {
+            const translateBtn = document.getElementById('translate-btn');
+            const inputText = document.getElementById('input-text');
+            
+            translateBtn.addEventListener('click', translateText);
+            inputText.addEventListener('keydown', (e) => {
                 if (e.ctrlKey && e.key === 'Enter') {
                     translateText();
                 }
             });
         }
 
-        function setProgress(percent) {
-            progressBar.style.width = percent + "%";
-        }
-
         function translateText() {
-            const inputText = document.getElementById('input-text').value;
-            const outputElement = document.getElementById('output');
+            const input = document.getElementById('input-text').value.trim();
+            const output = document.getElementById('output');
 
-            if (inputText.trim() === '') {
-                outputElement.textContent = 'Please enter some text to translate. 🤔';
+            if (!input) {
+                output.textContent = 'Please enter some text 🤔';
                 return;
             }
 
             try {
-                const translatedText = translator.translate_text(inputText);
-                outputElement.textContent = translatedText;
+                const result = translator.translate_text(input);
+                output.textContent = result || '🤷‍♀️ No matching emojis found';
             } catch (error) {
                 console.error("Translation error:", error);
-                outputElement.textContent = `Error during translation: ${error.message} ❌`;
+                output.textContent = '❌ Translation failed';
             }
         }
 
-        // Initialize when the page loads
         window.addEventListener('load', initializeApp);
     </script>
 </body>
