@@ -501,7 +501,7 @@ cd Emoji-Translator</code></pre>
 
             try {
                 const translatedText = translator.translate_text(inputText);
-                outputElement.textContent = translatedText || 'No emoji matches found for your text. Try different words! 🤷‍♀️';
+                outputElement.textContent = translatedText;
             } catch (error) {
                 console.error("Translation error:", error);
                 outputElement.textContent = `Error during translation: ${error.message} ❌`;
