@@ -22,7 +22,7 @@
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 3rem 2rem;
         }
 
         .back-btn {
@@ -242,12 +242,12 @@
             .container {
                 padding: 1rem;
             }
-            
+
             h1 {
                 font-size: 2rem;
                 margin-bottom: 2rem;
             }
-            
+
             .emoji-translator {
                 padding: 1.5rem;
             }
@@ -256,9 +256,10 @@
 </head>
 <body>
     <div class="container">
-        <button class="back-btn" onclick="window.location.href='/'">← Back to Home</button>
+        <div id="header-placeholder"></div>
+        <!-- <button class="back-btn" onclick="window.location.href='/'">← Back to Home</button> -->
 
-        <h1>How Emoji Translator Works</h1>
+        <!-- <h1>How Emoji Translator Works</h1> -->
 
         <div class="emoji-translator">
             <div id="loading">
@@ -289,7 +290,7 @@
 
         <div class="blog-content">
             <p>Ever wondered how you could automatically convert text like "I love pizza" into emojis like "❤️ 🍕"? Today, we'll dive deep into building an Emoji Translator that uses the power of Rust, WebAssembly, and natural language processing to make this magic happen!</p>
-            <p>Source Code: <a href="https://github.com/8ria/Emoji-Translator" target="_blank">https://8ria.github.io/Emoji-Translator</a></p>
+            <p>Source Code: <a href="https://github.com/8ria/Emoji-Translator" target="_blank">https:
             <h2><span class="emoji">💻</span> What We're Building</h2>
             <p>Our Emoji Translator is a web application that:</p>
             <ul>
@@ -321,14 +322,13 @@ pub struct EmojiTranslator {
 }
 </code></pre>
 
-
             <p>Our <code>EmojiTranslator</code> struct is the heart of our application. Let's break down what each field does:</p>
             <ul>
                 <li><strong><code>embeddings</code></strong>: This HashMap stores word embeddings - mathematical vectors that represent words in high-dimensional space. Think of it as a dictionary where each word maps to a list of numbers that capture its meaning.</li>
                 <li><strong><code>emoji_keywords</code></strong>: This maps each emoji to a list of related keywords. For example, 😊 might map to `["happy", "smile", "joy", "cheerful"]`.</li>
             </ul>
             <p>The <code>#[wasm_bindgen]</code> attribute is what makes this Rust code callable from JavaScript in the browser!</p>
-            
+
             <h3>Constructor and Initialization</h3>
             <pre><code>#[wasm_bindgen(constructor)]
 pub fn new() -> Self {
@@ -383,7 +383,6 @@ pub fn initialize(&mut self, glove_data: &str, emoji_json: &str) -> Result<(), J
     Ok(())
 }
 </code></pre>
-
 
             <p>This function parses GloVe embeddings from a text file. Each line looks like:</p>
             <code>happy 0.25 -0.16 0.89 0.34 -0.52 ...</code>
@@ -688,22 +687,19 @@ pub fn initialize() -> i32 {
             }
         }
 
-        async function loadFooter() {
-            try {
-                const response = await fetch('/footer.html');
-                if (!response.ok) {
-                    throw new Error(`Failed to load footer.html: ${response.status} ${response.statusText}`);
-                }
-                const footerHtml = await response.text();
-                document.getElementById('footer-placeholder').innerHTML = footerHtml;
-            } catch (error) {
-                console.error("Error loading footer:", error);
+        async function loadContent(placeholderId, filePath) {
+            const response = await fetch(filePath);
+            if (!response.ok) {
+                throw new Error(`Failed to load ${filePath}: ${response.status} ${response.statusText}`);
             }
+            const htmlContent = await response.text();
+            document.getElementById(placeholderId).innerHTML = htmlContent;
         }
 
         window.addEventListener('load', () => {
             initializeApp();
-            loadFooter();
+            loadContent('header-placeholder', '../../header.html');
+            loadContent('footer-placeholder', '../../footer.html');
         });
     </script>
 </body>
