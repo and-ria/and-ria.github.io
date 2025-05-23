@@ -57,13 +57,13 @@
             font-size: 2rem;
             font-weight: 300;
             letter-spacing: -0.02em;
-            margin-bottom: 0.25rem; /* Reduced margin for the tagline */
+            margin-bottom: 0.25rem; 
             cursor: pointer;
         }
 
         .header-info p {
             color: #888;
-            font-size: 1rem; /* Adjusted font size for the tagline */
+            font-size: 1rem; 
             font-weight: 300;
         }
 
@@ -163,53 +163,52 @@
             line-height: 1.6;
         }
 
-        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .container {
                 padding: 2rem 1rem;
             }
-            
+
             header {
-                flex-direction: column; /* Stack items vertically */
-                align-items: flex-start; /* Align to the left */
-                gap: 1rem; /* Space between stacked header elements */
+                flex-direction: column; 
+                align-items: flex-start; 
+                gap: 1rem; 
                 margin-bottom: 3rem;
                 padding-bottom: 1.5rem;
             }
 
             .header-left {
-                width: 100%; /* Take full width */
-                justify-content: flex-start; /* Align image and info to start */
+                width: 100%; 
+                justify-content: flex-start; 
                 gap: 1rem;
             }
 
             .header-left img {
-                width: 60px; /* Smaller image on mobile */
+                width: 60px; 
                 height: 60px;
             }
 
             .header-info h1 {
-                font-size: 1.8rem; /* Adjust font size for mobile */
+                font-size: 1.8rem; 
             }
 
             .header-info p {
-                font-size: 0.9rem; /* Adjust tagline font size for mobile */
+                font-size: 0.9rem; 
             }
 
             .header-right {
-                width: 100%; /* Take full width */
-                justify-content: flex-start; /* Align nav links to start */
-                gap: 1.5rem; /* Space between nav links on mobile */
+                width: 100%; 
+                justify-content: flex-start; 
+                gap: 1.5rem; 
             }
-            
+
             .post-card {
                 padding: 1.5rem;
             }
-            
+
             .post-title {
                 font-size: 1.3rem;
             }
-            
+
             .blog-posts {
                 gap: 2rem;
             }
@@ -217,8 +216,8 @@
 
         @media (max-width: 480px) {
             .header-left {
-                flex-direction: column; /* Stack image and info vertically */
-                align-items: center; /* Center image and info */
+                flex-direction: column; 
+                align-items: center; 
                 gap: 0.5rem;
             }
 
@@ -228,21 +227,21 @@
             }
 
             .header-info {
-                align-items: center; /* Center text under stacked image */
+                align-items: center; 
             }
 
             .header-info h1 {
                 font-size: 1.5rem;
                 text-align: center;
             }
-            
+
             .header-info p {
                 font-size: 0.85rem;
                 text-align: center;
             }
 
             .header-right {
-                justify-content: center; /* Center nav links */
+                justify-content: center; 
                 gap: 1rem;
             }
 
@@ -266,10 +265,10 @@
                 <div class="nav-link" onclick="window.location.href='about'">About</div>
             </div>
         </header>
-        
+
         <div id="blog-posts" class="blog-posts active">
-            <div class="post-card" onclick="window.location.href='blog/emoji-translator.html'">
-                <div class="post-title">How Emoji Translator Works (With Rust + Wasm)</div>
+            <div class="post-card" onclick="window.location.href='blog/emoji-translator'">
+                <div class="post-title">How Emoji Translator Works</div>
                 <div class="post-meta">
                     <span class="tag">Rust</span>
                     <span class="tag">WebAssembly</span>
@@ -280,7 +279,7 @@
                 </div>
             </div>
 
-            <div class="post-card" onclick="window.location.href='blog/wasm-intro.html'">
+            <div class="post-card" onclick="window.location.href='blog/wasm-intro'">
                 <div class="post-title">Getting Started with Rust and WebAssembly</div>
                 <div class="post-meta">
                     <span class="tag">Rust</span>
@@ -292,7 +291,7 @@
                 </div>
             </div>
 
-            <div class="post-card" onclick="window.location.href='blog/ml-browser.html'">
+            <div class="post-card" onclick="window.location.href='blog/ml-browser'">
                 <div class="post-title">Machine Learning in the Browser</div>
                 <div class="post-meta">
                     <span class="tag">Machine Learning</span>
