@@ -26,23 +26,62 @@
         }
 
         header {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 4rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid #222;
         }
 
-        header h1 {
-            font-size: 3rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
         }
 
-        header p {
-            color: #888;
-            font-size: 1.1rem;
+        .header-left img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #555;
+        }
+
+        .header-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-info h1 {
+            font-size: 2rem;
             font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem; /* Reduced margin for the tagline */
+            cursor: pointer;
+        }
+
+        .header-info p {
+            color: #888;
+            font-size: 1rem; /* Adjusted font size for the tagline */
+            font-weight: 300;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-size: 1.1rem;
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
         }
 
         .blog-posts {
@@ -124,17 +163,43 @@
             line-height: 1.6;
         }
 
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .container {
                 padding: 2rem 1rem;
             }
             
             header {
+                flex-direction: column; /* Stack items vertically */
+                align-items: flex-start; /* Align to the left */
+                gap: 1rem; /* Space between stacked header elements */
                 margin-bottom: 3rem;
+                padding-bottom: 1.5rem;
             }
-            
-            header h1 {
-                font-size: 2.5rem;
+
+            .header-left {
+                width: 100%; /* Take full width */
+                justify-content: flex-start; /* Align image and info to start */
+                gap: 1rem;
+            }
+
+            .header-left img {
+                width: 60px; /* Smaller image on mobile */
+                height: 60px;
+            }
+
+            .header-info h1 {
+                font-size: 1.8rem; /* Adjust font size for mobile */
+            }
+
+            .header-info p {
+                font-size: 0.9rem; /* Adjust tagline font size for mobile */
+            }
+
+            .header-right {
+                width: 100%; /* Take full width */
+                justify-content: flex-start; /* Align nav links to start */
+                gap: 1.5rem; /* Space between nav links on mobile */
             }
             
             .post-card {
@@ -151,16 +216,38 @@
         }
 
         @media (max-width: 480px) {
-            header h1 {
-                font-size: 2rem;
+            .header-left {
+                flex-direction: column; /* Stack image and info vertically */
+                align-items: center; /* Center image and info */
+                gap: 0.5rem;
+            }
+
+            .header-left img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .header-info {
+                align-items: center; /* Center text under stacked image */
+            }
+
+            .header-info h1 {
+                font-size: 1.5rem;
+                text-align: center;
             }
             
-            header p {
-                font-size: 1rem;
+            .header-info p {
+                font-size: 0.85rem;
+                text-align: center;
             }
-            
-            .post-meta {
-                flex-wrap: wrap;
+
+            .header-right {
+                justify-content: center; /* Center nav links */
+                gap: 1rem;
+            }
+
+            .nav-link {
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -168,12 +255,20 @@
 <body>
     <div class="container">
         <header>
-            <h1 onclick="window.location.reload()" style="cursor: pointer;">Andria's Blog</h1>
-            <p>Exploring code, creativity, and innovation</p>
+            <div class="header-left">
+                <img src="profile.webp" alt="Andria's Profile Picture"> <div class="header-info">
+                    <h1 onclick="window.location.reload()">Andria</h1>
+                    <p>Exploring code, creativity, and innovation</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="nav-link" onclick="window.location.href='/'">Blog</div>
+                <div class="nav-link" onclick="window.location.href='about'">About</div>
+            </div>
         </header>
         
         <div id="blog-posts" class="blog-posts active">
-            <div class="post-card" onclick="window.location.href='blog/emoji-translator'">
+            <div class="post-card" onclick="window.location.href='blog/emoji-translator.html'">
                 <div class="post-title">How Emoji Translator Works (With Rust + Wasm)</div>
                 <div class="post-meta">
                     <span class="tag">Rust</span>
@@ -185,7 +280,7 @@
                 </div>
             </div>
 
-            <div class="post-card" onclick="window.location.href='blog/wasm-intro'">
+            <div class="post-card" onclick="window.location.href='blog/wasm-intro.html'">
                 <div class="post-title">Getting Started with Rust and WebAssembly</div>
                 <div class="post-meta">
                     <span class="tag">Rust</span>
@@ -197,7 +292,7 @@
                 </div>
             </div>
 
-            <div class="post-card" onclick="window.location.href='blog/ml-browser'">
+            <div class="post-card" onclick="window.location.href='blog/ml-browser.html'">
                 <div class="post-title">Machine Learning in the Browser</div>
                 <div class="post-meta">
                     <span class="tag">Machine Learning</span>
