@@ -690,7 +690,7 @@ pub fn initialize() -> i32 {
 
         async function loadFooter() {
             try {
-                const response = await fetch('../footer.html');
+                const response = await fetch('/footer.html');
                 if (!response.ok) {
                     throw new Error(`Failed to load footer.html: ${response.status} ${response.statusText}`);
                 }
