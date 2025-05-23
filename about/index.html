@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .back-btn {
+            background: none;
+            border: 1px solid #333;
+            color: #888;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            margin-bottom: 3rem;
+        }
+
+        .back-btn:hover {
+            border-color: #555;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: -0.02em;
+        }
+
+        .emoji-translator {
+            background: #111111;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        #loading {
+            text-align: center;
+        }
+
+        .translator-title {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            color: #ccc;
+        }
+
+        .progress {
+            width: 100%;
+            height: 2px;
+            background: #222;
+            border-radius: 1px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #ffffff;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .status-text {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 1rem;
+        }
+
+        #translator {
+            display: none;
+        }
+
+        .input-group {
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        textarea {
+            width: 100%;
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 1rem;
+            color: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.2s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #555;
+        }
+
+        textarea::placeholder {
+            color: #666;
+        }
+
+        .translate-btn {
+            width: 100%;
+            background: #ffffff;
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 2rem;
+        }
+
+        .translate-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-1px);
+        }
+
+        .translate-btn:active {
+            transform: translateY(0);
+        }
+
+        #output {
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 1rem;
+            font-size: 1.5rem;
+            min-height: 3rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .blog-content {
+            color: #ccc;
+            max-width: none;
+        }
+
+        .blog-content h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin: 3rem 0 1rem 0;
+            color: #fff;
+            border-bottom: 1px solid #222;
+            padding-bottom: 0.5rem;
+        }
+
+        .blog-content p {
+            margin-bottom: 1.5rem;
+            color: #aaa;
+        }
+
+        .blog-content a {
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid #333;
+            transition: border-color 0.2s ease;
+        }
+
+        .blog-content a:hover {
+            border-color: #fff;
+        }
+
+        .blog-content ol, .blog-content ul {
+            margin: 1rem 0 1.5rem 1.5rem;
+            color: #aaa;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-content strong {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .blog-content pre {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 4px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .blog-content code {
+            background: #0a0a0a;
+            padding: 0.2rem 0.4rem;
+            border-radius: 2px;
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        .blog-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .emoji {
+            font-style: normal;
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .emoji-translator {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="header-placeholder"></div>
+        <div class="blog-content">
+            <p><strong>Hey there!</strong> I’m Andria, a 17-year-old Rust enthusiast who’s been diving into the world of coding for a few years now. I’m super excited you’re here on my blog, where I share my adventures as a developer and my love for creating with Rust. Think of this page as a quick peek into who I am, why I’m all about Rust, and what fuels my coding journey. Let’s get started!</p>
+            <h2><span class="emoji">🦀</span> Why Rust Rocks My World</h2>
+            <p>Rust is my go-to programming language, and I’m totally hooked! It’s like the perfect blend of speed, safety, and fun. Rust’s smart compiler catches errors before they sneak into my projects, letting me build everything from zippy web apps to neat command-line tools without worrying about crashes. I also like how Rust gives me the power to write high-performance code while keeping things secure and tidy. Oh, and the Rust community? It’s a welcoming crew of folks who share ideas and inspire me to keep exploring.</p>
+            <h2><span class="emoji">💡</span> What Makes Coding So Awesome</h2>
+            <p>For me, coding is like piecing together a puzzle that’s always fresh and exciting. I get a thrill from turning a spark of an idea into something real—like a slick tool or a clever algorithm. With Rust, I can tinker with low-level details while still writing clean, modern code. Whether I’m experimenting with async magic or crafting a tiny script, every project feels like a creative adventure. Plus, coding connects me with a global crowd of developers who are just as pumped about building cool stuff as I am.</p>
+            <h2><span class="emoji">🔥</span> What Keeps Me Fired Up</h2>
+            <p>My drive comes from the endless possibilities coding offers. Every new project is a chance to learn something fresh, whether it’s mastering a new Rust library or contributing to open-source projects that make a difference. I love the idea that my code can solve problems, streamline tasks, or even bring a smile to someone’s face. The Rust community’s enthusiasm and the thrill of tackling new challenges keep me motivated to grow, experiment, and push my skills further.</p>
+            <h2><span class="emoji">🔗</span> Want to Connect?</h2>
+            <p>I’d love to hear from you! You can shoot me an email at <a href="mailto:hey@andriak.com">hey@andriaK.com</a> or swing by my GitHub at <a href="https://github.com/8ria" target="_blank">github.com/8ria</a> to check out my latest Rust creations. If you’re into Rust, have a project idea, or just want to chat about coding, drop me a line—I’m always up for a fun convo or collaboration!</p>
+        </div>
+    </div>
+    <div id="footer-placeholder"></div>
+
+    <script type="module">
+        async function loadContent(placeholderId, filePath) {
+            try {
+                const response = await fetch(filePath);
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${filePath}: ${response.status} ${response.statusText}`);
+                }
+                const htmlContent = await response.text();
+                document.getElementById(placeholderId).innerHTML = htmlContent;
+            } catch (error) {
+                console.error(`Error loading ${filePath}:`, error);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            loadContent('header-placeholder', '../../header.html');
+            loadContent('footer-placeholder', '../../footer.html');
+        });
+    </script>
+</body>
+</html>
