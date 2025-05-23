@@ -1,0 +1,171 @@
+<style>
+    #header-placeholder {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #header-placeholder header {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        margin-bottom: 4rem !important;
+        padding-bottom: 2rem !important;
+        border-bottom: 1px solid #222 !important;
+        background: transparent !important;
+        color: #ffffff !important;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+    }
+
+    #header-placeholder header .header-left {
+        display: flex !important;
+        align-items: center !important;
+        gap: 1.5rem !important;
+    }
+
+    #header-placeholder header .header-left img {
+        width: 80px !important;
+        height: 80px !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+        border: 2px solid #555 !important;
+        display: block !important;
+    }
+
+    #header-placeholder header .header-info {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    #header-placeholder header .header-info h1 {
+        font-size: 2rem !important;
+        font-weight: 300 !important;
+        letter-spacing: -0.02em !important;
+        margin: 0 0 0.25rem 0 !important;
+        padding: 0 !important;
+        cursor: pointer !important;
+        color: #ffffff !important;
+        font-family: inherit !important;
+        line-height: 1.2 !important;
+        text-align: left !important;
+    }
+
+    #header-placeholder header .header-info p {
+        color: #888 !important;
+        font-size: 1rem !important;
+        font-weight: 300 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1.4 !important;
+        text-align: left !important;
+    }
+
+    #header-placeholder header .header-right {
+        display: flex !important;
+        gap: 2rem !important;
+        align-items: center !important;
+    }
+
+    #header-placeholder header .nav-link {
+        font-size: 1.1rem !important;
+        color: #888 !important;
+        text-decoration: none !important;
+        transition: color 0.3s ease !important;
+        cursor: pointer !important;
+        font-weight: 300 !important;
+        font-family: inherit !important;
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    #header-placeholder header .nav-link:hover {
+        color: #ffffff !important;
+    }
+
+    @media (max-width: 768px) {
+        #header-placeholder header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 1rem !important;
+            margin-bottom: 3rem !important;
+            padding-bottom: 1.5rem !important;
+        }
+
+        #header-placeholder header .header-left {
+            width: 100% !important;
+            justify-content: flex-start !important;
+            gap: 1rem !important;
+        }
+
+        #header-placeholder header .header-left img {
+            width: 60px !important;
+            height: 60px !important;
+        }
+
+        #header-placeholder header .header-info h1 {
+            font-size: 1.8rem !important;
+        }
+
+        #header-placeholder header .header-info p {
+            font-size: 0.9rem !important;
+        }
+
+        #header-placeholder header .header-right {
+            width: 100% !important;
+            justify-content: flex-start !important;
+            gap: 1.5rem !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        #header-placeholder header .header-left {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+        }
+
+        #header-placeholder header .header-left img {
+            width: 50px !important;
+            height: 50px !important;
+        }
+
+        #header-placeholder header .header-info {
+            align-items: center !important;
+        }
+
+        #header-placeholder header .header-info h1 {
+            font-size: 1.5rem !important;
+            text-align: center !important;
+        }
+
+        #header-placeholder header .header-info p {
+            font-size: 0.85rem !important;
+            text-align: center !important;
+        }
+
+        #header-placeholder header .header-right {
+            justify-content: center !important;
+            gap: 1rem !important;
+        }
+
+        #header-placeholder header .nav-link {
+            font-size: 0.95rem !important;
+        }
+    }
+</style>
+
+<header>
+    <div class="header-left">
+        <img src="profile.webp" alt="Andria's Profile Picture">
+        <div class="header-info">
+            <h1 onclick="window.location.href='/'">Andria</h1>
+            <p>Exploring code, creativity, and innovation</p>
+        </div>
+    </div>
+    <div class="header-right">
+        <div class="nav-link" onclick="window.location.href='/'">Blog</div>
+        <div class="nav-link" onclick="window.location.href='about'">About</div>
+    </div>
+</header>
