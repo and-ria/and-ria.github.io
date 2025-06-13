@@ -263,54 +263,38 @@
             <p>Ever wondered how the programming languages you use every day actually come to life? Python, JavaScript, C++, Rust – they all started as ideas in someone's mind and became the powerful tools millions of developers rely on. Let's dive deep into the fascinating world of programming language creation and explore every step of the process.</p>
             <h2><span class="emoji">🤔</span> What Is a Programming Language, Really?</h2>
             <p>Before we build one, let's understand what we're creating. A programming language is essentially a bridge between human thoughts and machine instructions. When you write <code>print("Hello World")</code> in Python, that friendly command needs to be translated into the 1s and 0s that your computer actually understands.</p>
+            <p>Think of it like a translation system: you speak English to a translator, who then speaks Chinese to someone else. Your programming language is that translator, converting your human-readable code into machine-readable instructions.</p>
 
-Think of it like a translation system: you speak English to a translator, who then speaks Chinese to someone else. Your programming language is that translator, converting your human-readable code into machine-readable instructions.
-
-## The Journey: From Idea to Implementation
-
-Creating a programming language is like building a city from scratch. You need to plan the streets (syntax), create the buildings (features), establish laws (semantics), and build infrastructure (compiler/interpreter). Let's walk through each phase.
-
-### Phase 1: Design and Philosophy
-
-Every programming language starts with a vision. The creators ask fundamental questions:
-
-**What problem are we solving?** Python was created to be readable and simple. C was designed for system programming. JavaScript was made for web browsers. Rust focuses on memory safety without sacrificing performance.
-
-**Who is our audience?** A language for beginners will look very different from one designed for systems programmers or data scientists.
-
-**What paradigm will we support?** Will it be object-oriented like Java, functional like Haskell, or procedural like C? Maybe all three?
-
-The design phase involves creating a specification document that answers questions like:
-- How will variables be declared?
-- What data types will we support?
-- How will functions work?
-- What will the syntax look like?
-- How will memory be managed?
-
-### Phase 2: Creating the Grammar
-
-Once you know what your language should do, you need to define exactly how it will look. This is where you create a formal grammar – a precise set of rules that defines valid syntax.
-
-Let's say we're creating a simple language called "SimpleScript." Our grammar might look like this:
-
-```
-Program → Statement*
+            <h2><span class="emoji">🛤️</span> The Journey: From Idea to Implementation</h2>
+            <p>Creating a programming language is like building a city from scratch. You need to plan the streets (syntax), create the buildings (features), establish laws (semantics), and build infrastructure (compiler/interpreter). Let's walk through each phase.</p>
+            <h3>Phase 1: Design and Philosophy</h3>
+            <p>Every programming language starts with a vision. The creators ask fundamental questions:</p>
+            <p><strong>What problem are we solving?</strong> Python was created to be readable and simple. C was designed for system programming. JavaScript was made for web browsers. Rust focuses on memory safety without sacrificing performance.</p>
+            <p><strong>Who is our audience?</strong> A language for beginners will look very different from one designed for systems programmers or data scientists.</p>
+            <p><strong>What paradigm will we support?</strong> Will it be object-oriented like Java, functional like Haskell, or procedural like C? Maybe all three?</p>
+            <p>The design phase involves creating a specification document that answers questions like:</p>
+            <ul>
+                <li>How will variables be declared?</li>
+                <li>What data types will we support?</li>
+                <li>How will functions work?</li>
+                <li>What will the syntax look like?</li>
+                <li>How will memory be managed?</li>
+            </ul>
+            <h3>Phase 2: Creating the Grammar</h3>
+            <p>Once you know what your language should do, you need to define exactly how it will look. This is where you create a formal grammar – a precise set of rules that defines valid syntax.</p>
+            <p>Let's say we're creating a simple language called "SimpleScript." Our grammar might look like this:</p>
+            <pre><code>Program → Statement*
 Statement → Assignment | PrintStatement | IfStatement
 Assignment → Identifier = Expression
 PrintStatement → print(Expression)
 Expression → Number | String | Identifier | Expression + Expression
-```
-
-This grammar tells us that a program is zero or more statements, a statement can be an assignment or print statement, and so on. It's like creating the DNA of your language.
-
-### Phase 3: Building the Lexer (Tokenizer)
-
-Now we start coding! The first component we build is the lexer, also called a tokenizer. Its job is to take raw source code and break it into meaningful chunks called tokens.
-
-Imagine you have this line of code:
-```
-x = 42 + y
-```
+</code></pre>
+            <p>This grammar tells us that a program is zero or more statements, a statement can be an assignment or print statement, and so on. It's like creating the DNA of your language.</p>
+            <h3>Phase 3: Building the Lexer (Tokenizer)</h3>
+            <p>Now we start coding! The first component we build is the lexer, also called a tokenizer. Its job is to take raw source code and break it into meaningful chunks called tokens.</p>
+            <p>Imagine you have this line of code:</p>
+            <pre><code>x = 42 + y
+</code></pre>
 
 The lexer will scan through each character and produce tokens:
 - `x` → IDENTIFIER token
