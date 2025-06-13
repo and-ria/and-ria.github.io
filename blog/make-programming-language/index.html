@@ -295,18 +295,16 @@ Expression → Number | String | Identifier | Expression + Expression
             <p>Imagine you have this line of code:</p>
             <pre><code>x = 42 + y
 </code></pre>
-
-The lexer will scan through each character and produce tokens:
-- `x` → IDENTIFIER token
-- `=` → ASSIGNMENT token  
-- `42` → NUMBER token
-- `+` → PLUS token
-- `y` → IDENTIFIER token
-
-Here's a simplified example of how a lexer might work:
-
-```python
-def tokenize(source_code):
+            <p>The lexer will scan through each character and produce tokens:</p>
+            <ul>
+                <li><code>x</code> → IDENTIFIER token</li>
+                <li><code>=</code> → ASSIGNMENT token  </li>
+                <li><code>42</code> → NUMBER token</li>
+                <li><code>+</code> → PLUS token</li>
+                <li><code>y</code> → IDENTIFIER token</li>
+            </ul>
+            <p>Here's a simplified example of how a lexer might work:</p>
+            <pre><code>def tokenize(source_code):
     tokens = []
     i = 0
     while i < len(source_code):
@@ -327,13 +325,16 @@ def tokenize(source_code):
             i += 1
         # ... handle other characters
     return tokens
-```
-
-### Phase 4: Building the Parser
-
-The parser takes the stream of tokens from the lexer and builds an Abstract Syntax Tree (AST). The AST represents the structure and meaning of your code in a tree format.
-
-For our example `x = 42 + y`, the parser might create this tree:
+</code></pre>
+            <h3>Phase 4: Building the Parser</h3>
+            <p>The parser takes the stream of tokens from the lexer and builds an Abstract Syntax Tree (AST). The AST represents the structure and meaning of your code in a tree format.</p>
+            <p>For our example <code>x = 42 + y</code>, the parser might create this tree:</p>
+            <pre><code>    Assignment
+   /          \
+  x        Addition
+          /        \
+        42          y
+</code></pre>
 
 ```
     Assignment
