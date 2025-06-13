@@ -335,21 +335,9 @@ Expression → Number | String | Identifier | Expression + Expression
           /        \
         42          y
 </code></pre>
-
-```
-    Assignment
-   /          \
-  x        Addition
-          /        \
-        42          y
-```
-
-The parser uses the grammar rules we defined earlier to build this tree. It's like a linguist analyzing sentence structure, but for code instead of natural language.
-
-Here's a simple parser example:
-
-```python
-def parse_assignment(tokens):
+            <p>The parser uses the grammar rules we defined earlier to build this tree. It's like a linguist analyzing sentence structure, but for code instead of natural language.</p>
+            <p>Here's a simple parser example:</p>
+            <pre><code>def parse_assignment(tokens):
     identifier = expect_token(tokens, 'IDENTIFIER')
     expect_token(tokens, 'ASSIGNMENT')
     expression = parse_expression(tokens)
@@ -362,20 +350,13 @@ def parse_expression(tokens):
         right = parse_expression(tokens)
         return AdditionNode(left, right)
     return left
-```
-
-### Phase 5: Building the Backend (Compiler or Interpreter)
-
-Now comes the crucial decision: will your language be compiled or interpreted?
-
-**Interpreters** execute code directly from the AST. They walk through the tree and perform actions immediately. Python works this way – when you run a Python script, the interpreter reads and executes each line.
-
-**Compilers** translate the AST into machine code or another language. C works this way – the compiler converts your C code into executable machine instructions before you run it.
-
-**For an Interpreter:**
-
-```python
-def interpret(node):
+</code></pre>
+            <h3>Phase 5: Building the Backend (Compiler or Interpreter)</h3>
+            <p>Now comes the crucial decision: will your language be compiled or interpreted?</p>
+            <p><strong>Interpreters</strong> execute code directly from the AST. They walk through the tree and perform actions immediately. Python works this way – when you run a Python script, the interpreter reads and executes each line.</p>
+            <p><strong>Compilers</strong> translate the AST into machine code or another language. C works this way – the compiler converts your C code into executable machine instructions before you run it.</p>
+            <p><strong>For an Interpreter:</strong></p>
+            <pre><code>def interpret(node):
     if isinstance(node, NumberNode):
         return node.value
     elif isinstance(node, IdentifierNode):
@@ -388,12 +369,9 @@ def interpret(node):
         value = interpret(node.expression)
         variables[node.identifier] = value
         return value
-```
-
-**For a Compiler:**
-
-```python
-def compile_to_bytecode(node):
+</code></pre>
+            <p><strong>For a Compiler:</strong></p>
+            <pre><code>def compile_to_bytecode(node):
     if isinstance(node, NumberNode):
         emit('LOAD_CONST', node.value)
     elif isinstance(node, IdentifierNode):
@@ -405,24 +383,15 @@ def compile_to_bytecode(node):
     elif isinstance(node, AssignmentNode):
         compile_to_bytecode(node.expression)
         emit('STORE_VAR', node.identifier)
-```
-
-### Phase 6: Adding Advanced Features
-
-Once you have a basic working language, you can add sophisticated features:
-
-**Memory Management:** How will your language handle memory? Will it have garbage collection like Python and Java, or manual memory management like C?
-
-**Type System:** Will variables have types? Will they be checked at compile time (static typing) or runtime (dynamic typing)?
-
-**Error Handling:** How will your language deal with errors? Exception handling, error codes, or something else?
-
-**Standard Library:** What built-in functions and modules will you provide? File I/O, networking, math functions?
-
-**Optimization:** How can you make code run faster? Dead code elimination, constant folding, loop optimization?
-
-## The Tools of the Trade
-
+</code></pre>
+            <h3>Phase 6: Adding Advanced Features</h3>
+            <p>Once you have a basic working language, you can add sophisticated features:</p>
+            <p><strong>Memory Management:</strong> How will your language handle memory? Will it have garbage collection like Python and Java, or manual memory management like C?</p>
+            <p><strong>Type System:</strong> Will variables have types? Will they be checked at compile time (static typing) or runtime (dynamic typing)?</p>
+            <p><strong>Error Handling:</strong> How will your language deal with errors? Exception handling, error codes, or something else?</p>
+            <p><strong>Standard Library:</strong> What built-in functions and modules will you provide? File I/O, networking, math functions?</p>
+            <p><strong>Optimization:</strong> How can you make code run faster? Dead code elimination, constant folding, loop optimization?</p>
+            <h2><span class="emoji">🧰</span> The Tools of the Trade</h2>
 Language creators use specialized tools to make their job easier:
 
 **Parser Generators:** Tools like ANTLR, Yacc, or Bison can automatically generate parsers from grammar specifications. Instead of hand-coding a parser, you write the grammar rules and let the tool create the parsing code.
