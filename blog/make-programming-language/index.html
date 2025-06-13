@@ -392,41 +392,24 @@ def parse_expression(tokens):
             <p><strong>Standard Library:</strong> What built-in functions and modules will you provide? File I/O, networking, math functions?</p>
             <p><strong>Optimization:</strong> How can you make code run faster? Dead code elimination, constant folding, loop optimization?</p>
             <h2><span class="emoji">🧰</span> The Tools of the Trade</h2>
-Language creators use specialized tools to make their job easier:
-
-**Parser Generators:** Tools like ANTLR, Yacc, or Bison can automatically generate parsers from grammar specifications. Instead of hand-coding a parser, you write the grammar rules and let the tool create the parsing code.
-
-**LLVM:** This is a powerful compiler infrastructure that handles the complex job of converting high-level representations to optimized machine code. Many modern languages like Swift, Rust, and Clang use LLVM as their backend.
-
-**Virtual Machines:** Some languages compile to bytecode that runs on a virtual machine, like Java's JVM or Python's CPython VM. This provides portability across different hardware platforms.
-
-## Real-World Examples
-
-Let's look at how some popular languages were created:
-
-**Python:** Guido van Rossum started Python in 1989 as a hobby project. He wanted a language that was easy to read and write, with clear syntax that emphasized code readability. Python's interpreter is written in C.
-
-**JavaScript:** Brendan Eich created JavaScript in just 10 days in 1995 at Netscape. Despite its rushed creation, it became one of the world's most popular languages. Modern JavaScript engines like V8 use just-in-time compilation for performance.
-
-**Rust:** Mozilla developed Rust to address memory safety issues in systems programming. It uses a unique ownership system to prevent common bugs like null pointer dereferences and buffer overflows without requiring garbage collection.
-
-**Go:** Google created Go to address issues with existing languages in large-scale software development. It focuses on simplicity, fast compilation, and built-in concurrency support.
-
-## The Challenges
-
-Creating a programming language isn't just about the technical implementation. Language creators face numerous challenges:
-
-**Performance:** Making code run fast requires sophisticated optimization techniques. Compilers need to analyze code and apply transformations that preserve meaning while improving speed.
-
-**Compatibility:** Once people start using your language, changing it becomes much harder. Breaking changes can frustrate users and split the community.
-
-**Ecosystem:** A language needs libraries, frameworks, documentation, and community support to succeed. Technical excellence alone isn't enough.
-
-**Standardization:** Popular languages often need formal standards to ensure compatibility across different implementations.
-
-## Modern Trends
-
-Today's programming language development is influenced by several trends:
+            <p>Language creators use specialized tools to make their job easier:</p>
+            <p><strong>Parser Generators:</strong> Tools like ANTLR, Yacc, or Bison can automatically generate parsers from grammar specifications. Instead of hand-coding a parser, you write the grammar rules and let the tool create the parsing code.</p>
+            <p><strong>LLVM:</strong> This is a powerful compiler infrastructure that handles the complex job of converting high-level representations to optimized machine code. Many modern languages like Swift, Rust, and Clang use LLVM as their backend.</p>
+            <p><strong>Virtual Machines:</strong> Some languages compile to bytecode that runs on a virtual machine, like Java's JVM or Python's CPython VM. This provides portability across different hardware platforms.</p>
+            <h2><span class="emoji">🌍</span> Real-World Examples</h2>
+            <p>Let's look at how some popular languages were created:</p>
+            <p><strong>Python:</strong> Guido van Rossum started Python in 1989 as a hobby project. He wanted a language that was easy to read and write, with clear syntax that emphasized code readability. Python's interpreter is written in C.</p>
+            <p><strong>JavaScript:</strong> Brendan Eich created JavaScript in just 10 days in 1995 at Netscape. Despite its rushed creation, it became one of the world's most popular languages. Modern JavaScript engines like V8 use just-in-time compilation for performance.</p>
+            <p><strong>Rust:</strong> Mozilla developed Rust to address memory safety issues in systems programming. It uses a unique ownership system to prevent common bugs like null pointer dereferences and buffer overflows without requiring garbage collection.</p>
+            <p><strong>Go:</strong> Google created Go to address issues with existing languages in large-scale software development. It focuses on simplicity, fast compilation, and built-in concurrency support.</p>
+            <h2><span class="emoji">⛰️</span> The Challenges</h2>
+            <p>Creating a programming language isn't just about the technical implementation. Language creators face numerous challenges:</p>
+            <p><strong>Performance:</strong> Making code run fast requires sophisticated optimization techniques. Compilers need to analyze code and apply transformations that preserve meaning while improving speed.</p>
+            <p><strong>Compatibility:</strong> Once people start using your language, changing it becomes much harder. Breaking changes can frustrate users and split the community.</p>
+            <p><strong>Ecosystem:</strong> A language needs libraries, frameworks, documentation, and community support to succeed. Technical excellence alone isn't enough.</p>
+            <p><strong>Standardization:</strong> Popular languages often need formal standards to ensure compatibility across different implementations.</p>
+            <h2><span class="emoji">📈</span> Modern Trends</h2>
+            <p>Today's programming language development is influenced by several trends:</p>
 
 **Memory Safety:** Languages like Rust and Swift include features to prevent common memory-related bugs that plague languages like C and C++.
 
